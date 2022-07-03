@@ -1,0 +1,369 @@
+body {
+    background-color: rgb(240, 240, 240);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 1080px;
+    margin: auto;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.8em 1em 0.6em 1em;
+    box-shadow: 0 2px 0px 0px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+header .logo {
+    padding: 0em 0.5em;
+    font-size: 3em;
+    font-style: italic;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+}
+
+header #menu {
+    margin-left: auto;
+    order: 2;
+}
+
+header ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin: 0;
+}
+
+header li {
+    padding: 0.8em 1em;
+}
+
+header li:hover {
+    background-color: rgb(245, 171, 171);
+    color: white;
+    transition: 200ms color;
+    transition: 200ms background-color;
+}
+
+header li a {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.3em;
+    font-weight: bold;
+    text-decoration: none;
+    color: inherit;
+}
+
+.content {
+    margin-top: 10px;
+    background-color:rgb(229 189 173);
+}
+
+#introduction {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 350px;
+}
+
+.flex {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#introduction-text {
+    font-size: 1.1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 300;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 2em;
+    width: 30em;
+    margin: auto;
+    text-align: justify;
+}
+
+#introduction-text p:first-child::first-letter {
+    font-size: 2em;
+}
+
+#introduction-text p:last-child {
+    font-weight: 400;
+}
+
+/** BANNER **/
+
+.banner {
+    height: 500px;
+    width: 100%;
+    position: relative;
+}
+
+.banner:hover .main-img {
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+.banner:hover #banner-text {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+.main-img {
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    opacity: 0.6;
+}
+
+#main-img {
+    background-image: url("./../img/zenit.jpg");
+    background-position: 0 -100px;
+}
+
+#main-img-skills {
+    background-image: url("./../img/coding.jpg");
+    background-position: 0 -100px;
+}
+
+#main-img-photo {
+    background-image: url("./../img/chess.jpg");
+    background-position: 0 -200px;
+}
+
+#main-img-contact {
+    background-image: url("./../img/contact.jpg");
+    background-position: 0 -200px;
+}
+
+#banner-text {
+    padding: 0.4em 0;
+    width: 100%;
+    text-align: center;
+    font-size: 4em;
+    font-weight: 100;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: white;
+    z-index: 1000;
+    opacity: 1;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/** FOOTER **/
+
+footer {
+    background-color:rgb(151, 84, 84);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1em 2em;
+}
+
+footer .motivational-quote {
+    color: white;
+    font-size: 1.1em;
+    font-weight: 100;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    display: inline-block;
+}
+
+footer .social-icons {
+    margin-left: auto;
+    order: 2;
+}
+
+footer ul {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+    margin: 0;
+}
+
+footer li {
+    padding: 0.8em 1em;
+    color: white;
+}
+
+footer li:hover {
+    background-color: rgb(245, 171, 171);
+    color: black;
+    transition: 200ms color;
+    transition: 200ms background-color;
+}
+
+footer li a {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-size: 1.3em;
+    text-decoration: none;
+    color: inherit;
+}
+
+/** SKILLS **/
+
+.skill-container {
+    width: 50%;
+    padding: 1em 1em;
+    padding-bottom: 3em;
+}
+
+.skill-container > .title {
+    font-size: 1.6em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-weight: 100;
+    margin-bottom: 1em;
+    margin-top: 1em;
+}
+
+.skill-box {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0.5em 1em;
+}
+
+.skill-box:hover {
+    background-color:rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+}
+
+.skill-box:hover .progress-bar {
+    background-color:rgb(107, 60, 60);
+}
+
+.progress-bar {
+    width: 70%;
+    height: 1.5em;
+    background-color:rgb(151, 84, 84);
+    display: inline-block;
+}
+
+.progress {
+    height: 100%;
+    width: 0;
+    transition: 400ms width;
+    background-color: aquamarine;
+}
+
+.skill-box span {
+    padding: 0 1em;
+}
+
+.skill-box .title {
+    font-size: 1.1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.skill-box:nth-child(2) .progress { width: 94%; }
+.skill-box:nth-child(3) .progress { width: 60%; }
+.skill-box:nth-child(4) .progress { width: 45%; }
+.skill-box:nth-child(6) .progress { width: 90%; }
+.skill-box:nth-child(7) .progress { width: 83%; }
+.skill-box:nth-child(8) .progress { width: 80%; }
+.skill-box:nth-child(9) .progress { width: 60%; }
+.skill-box:nth-child(11) .progress { width: 98%; }
+.skill-box:nth-child(12) .progress { width: 95%; }
+.skill-box:nth-child(13) .progress { width: 70%; }
+.skill-box:nth-child(14) .progress { width: 40%; }
+
+/** CONTACT **/
+textarea {
+    height: 200px;
+}
+
+.row {
+    display: block;
+    padding: 0.7em 1em;
+}
+
+form {
+    padding: 2em 0; 
+    width: 600px;
+}
+
+form label {
+    padding: 0.5em 0.5em;
+    text-align: right;
+    font-size: 1.1em;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 0.4em;
+    margin-top: 1em;
+}
+
+input[type=submit] {
+    background-color: brown;
+    color: white;
+    padding: 1em 1.2em;
+    border: none;
+    border-radius: 0.4em;
+    cursor: pointer;
+    float: right;
+}
+
+input[type=submit]:hover {
+    background-color: rgb(102, 49, 49);
+}
+
+#photos-container {
+    padding: 1em 1em;
+}
+
+.photo-row {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0.8em;
+}
+
+.photo-2col {
+    width: min-content;
+    display: inline-block;
+}
+
+.photo-1col {
+    display: inline-block;
+}
+
+.one-photo {
+    background-size: cover;
+    transition: transform 300ms ease-in-out;
+    cursor: pointer;
+}
+
+.one-photo:hover {
+    transform: scale(1.2);
+}
+
+.hor {
+    height: 300px;
+    width: 600px;
+    display: inline-block;
+}
+
+.ver {
+    height: 600px;
+    width: 400px;
+}
+
+#h01 { background-image: url('./../img/h01.jpg'); }
+#h02 { background-image: url('./../img/h02.jpg'); }
+#v01 { background-image: url('./../img/v01.jpg'); }
+#h03 { background-image: url('./../img/h03.jpg'); }
+#h04 { background-image: url('./../img/h04.jpg'); background-position: 0 -70px; }
+#v02 { background-image: url('./../img/v02.jpg'); background-position: 0 -100px; }
+#h05 { background-image: url('./../img/h05.jpg'); background-position: 0 -30px; }
+#h06 { background-image: url('./../img/h06.jpg'); }
+#v03 { background-image: url('./../img/v03.jpg'); }
