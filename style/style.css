@@ -138,22 +138,22 @@ header li a {
 }
 
 #main-img {
-    background-image: url("./../img/zenit.jpg");
+    background-image: url("./../img_lq/zenit.jpg");
     background-position: 0 -100px;
 }
 
 #main-img-skills {
-    background-image: url("./../img/coding.jpg");
+    background-image: url("./../img_lq/coding.jpg");
     background-position: 0 -100px;
 }
 
 #main-img-photo {
-    background-image: url("./../img/chess.jpg");
+    background-image: url("./../img_lq/chess.jpg");
     background-position: 0 -200px;
 }
 
 #main-img-contact {
-    background-image: url("./../img/contact.jpg");
+    background-image: url("./../img_lq/contact.jpg");
     background-position: 0 -200px;
 }
 
@@ -540,12 +540,12 @@ body.modal-open {
     width: 400px;
 }
 
-#h01 { background-image: url('./../img/DSC_0074.jpg'); }
-#h02 { background-image: url('./../img/DSC_0078.jpg'); }
-#v01 { background-image: url('./../img/DSC_0116.jpg'); }
-#h03 { background-image: url('./../img/DSC_0427.jpg'); }
-#h04 { background-image: url('./../img/DSC_0469.jpg'); }
-#v02 { background-image: url('./../img/DSC_0285.jpg'); }
-#h05 { background-image: url('./../img/DSC_0560.jpg'); }
-#h06 { background-image: url('./../img/DSC_0658.jpg'); }
-#v03 { background-image: url('./../img/DSC_0359-2.jpg'); }
+#h01 { background-image: url('./../img_lq/DSC_0074.jpg'); }
+#h02 { background-image: url('./../img_lq/DSC_0078.jpg'); }
+#v01 { background-image: url('./../img_lq/DSC_0116.jpg'); }
+#h03 { background-image: url('./../img_lq/DSC_0427.jpg'); }
+#h04 { background-image: url('./../img_lq/DSC_0469.jpg'); }
+#v02 { background-image: url('./../img_lq/DSC_0285.jpg'); }
+#h05 { background-image: url('./../img_lq/DSC_0560.jpg'); }
+#h06 { background-image: url('./../img_lq/DSC_0658.jpg'); }
+#v03 { background-image: url('./../img_lq/DSC_0359-2.jpg'); }
