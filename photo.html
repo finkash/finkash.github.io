@@ -31,33 +31,49 @@
             <div class="banner">
                 <div class="main-img" id="main-img-photo"></div>
                 <div id="banner-text">Photography</div>
+                <button type="button" class="album-arrow left" id="album-prev" aria-label="Previous album">&#10094;</button>
+                <button type="button" class="album-arrow right" id="album-next" aria-label="Next album">&#10095;</button>
             </div>
-            <div id="photos-container">
-                <div class="photo-row">
-                    <div class="photo-2col">
-                        <div class="one-photo hor" id="h01"></div>
-                        <div class="one-photo hor" id="h02"></div>
-                    </div>
-                    <div class="photo-1col">
-                        <div class="one-photo ver" id="v01"></div>
-                    </div>
-                </div>
-                <div class="photo-row">
-                    <div class="photo-1col">
-                        <div class="one-photo ver" id="v02"></div>
-                    </div>
-                    <div class="photo-2col">
-                        <div class="one-photo hor" id="h03"></div>
-                        <div class="one-photo hor" id="h04"></div>
-                    </div>
-                </div>
-                <div class="photo-row">
-                    <div class="photo-2col">
-                        <div class="one-photo hor" id="h05"></div>
-                        <div class="one-photo hor" id="h06"></div>
-                    </div>
-                    <div class="photo-1col">
-                        <div class="one-photo ver" id="v03"></div>
+            <div class="album-slider" id="album-slider">
+                <div class="album-viewport">
+                    <div class="album-track" id="album-track">
+                        <div class="album-page photos-masonry" id="photos-container">
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0031.jpg" alt="Photography DSC_0031"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0074.jpg" alt="Photography DSC_0074"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0078.jpg" alt="Photography DSC_0078"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0116.jpg" alt="Photography DSC_0116"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0175.jpg" alt="Photography DSC_0175"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0177.jpg" alt="Photography DSC_0177"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0197.jpg" alt="Photography DSC_0197"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0285.jpg" alt="Photography DSC_0285"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0291.jpg" alt="Photography DSC_0291"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0427.jpg" alt="Photography DSC_0427"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0469.jpg" alt="Photography DSC_0469"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0359-2.jpg" alt="Photography DSC_0359-2"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0484.jpg" alt="Photography DSC_0484"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0541.jpg" alt="Photography DSC_0541"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0560.jpg" alt="Photography DSC_0560"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0658.jpg" alt="Photography DSC_0658"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0662.jpg" alt="Photography DSC_0662"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0665-2.jpg" alt="Photography DSC_0665-2"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0666.jpg" alt="Photography DSC_0666"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0680.jpg" alt="Photography DSC_0680"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0707.jpg" alt="Photography DSC_0707"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0812.jpg" alt="Photography DSC_0812"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0937.jpg" alt="Photography DSC_0937"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0950-2.jpg" alt="Photography DSC_0950-2"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0960-2.jpg" alt="Photography DSC_0960-2"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC_0960-3.jpg" alt="Photography DSC_0960-3"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC_0974.jpg" alt="Photography DSC_0974"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC07775.jpg" alt="Photography DSC07775"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC07837.jpg" alt="Photography DSC07837"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC08509-3.jpg" alt="Photography DSC08509-3"></div>
+                            <div class="photo-tile portrait"><img class="one-photo" src="./img/DSC09037.jpg" alt="Photography DSC09037"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC09046.jpg" alt="Photography DSC09046"></div>
+                            <div class="photo-tile landscape"><img class="one-photo" src="./img/DSC09086.jpg" alt="Photography DSC09086"></div>
+                        </div>
+                        <div class="album-page photos-masonry" id="photos-container-page-2"></div>
+                        <div class="album-page photos-masonry" id="photos-container-page-3"></div>
                     </div>
                 </div>
             </div>
@@ -69,20 +85,178 @@
             <div class="social-icons">
                 <ul>
                     <li>
-                        <a href="https://facebook.com">f</a>
+                        <a href="https://www.linkedin.com/in/zorica-nikov-049847272/">l-in</a>
                     </li>
                     <li>
-                        <a href="https://instagram.com">i</a>
+                        <a href="https://www.instagram.com/zorica_nikov/">insta</a>
                     </li>
                     <li>
-                        <a href="https://twitter.com">t</a>
+                        <a href="https://x.com/_lady_madonna_">X</a>
                     </li>
                     <li>
-                        <a href="mailto:zoricanikov@gmail.com">g</a>
+                        <a href="https://500px.com/p/zoricanikov?view=photos">500px</a>
                     </li>
                 </ul>
             </div>
         </footer>
     </div>
+    <div class="photo-modal" id="photo-modal" aria-hidden="true">
+        <div class="photo-card" role="dialog" aria-modal="true" aria-labelledby="photo-modal-title">
+            <button type="button" class="photo-modal-close" id="photo-modal-close" aria-label="Close preview">&times;</button>
+            <img id="photo-modal-image" src="" alt="Expanded photo preview">
+            <div class="photo-card-content">
+                <h3 id="photo-modal-title"></h3>
+                <p id="photo-modal-description"></p>
+            </div>
+        </div>
+    </div>
+    <script>
+        (function () {
+            var track = document.getElementById('album-track');
+            var viewport = document.querySelector('.album-viewport');
+            var prev = document.getElementById('album-prev');
+            var next = document.getElementById('album-next');
+            var firstPage = document.getElementById('photos-container');
+            var secondPage = document.getElementById('photos-container-page-2');
+            var thirdPage = document.getElementById('photos-container-page-3');
+            var modal = document.getElementById('photo-modal');
+            var modalClose = document.getElementById('photo-modal-close');
+            var modalImage = document.getElementById('photo-modal-image');
+            var modalTitle = document.getElementById('photo-modal-title');
+            var modalDescription = document.getElementById('photo-modal-description');
+            var current = 0;
+
+            var tiles = Array.prototype.slice.call(firstPage.querySelectorAll('.photo-tile'));
+            var firstCut = Math.ceil(tiles.length / 3);
+            var secondCut = Math.ceil((tiles.length * 2) / 3);
+            var secondThird = tiles.slice(firstCut, secondCut);
+            var thirdThird = tiles.slice(secondCut);
+
+            secondThird.forEach(function (tile) {
+                secondPage.appendChild(tile);
+            });
+
+            thirdThird.forEach(function (tile) {
+                thirdPage.appendChild(tile);
+            });
+
+            var pages = [firstPage, secondPage, thirdPage];
+
+            function updateViewportHeight() {
+                viewport.style.height = pages[current].scrollHeight + 'px';
+            }
+
+            function setPage(index) {
+                current = Math.max(0, Math.min(index, pages.length - 1));
+                track.style.transform = 'translateX(-' + (current * (100 / pages.length)) + '%)';
+                updateViewportHeight();
+            }
+
+            function normalizeName(source) {
+                var filename = source.split('/').pop().replace('.jpg', '');
+                return filename.replace(/_/g, ' ').trim();
+            }
+
+            function buildUniqueDescription(index, prettyName) {
+                var bookQuotes = [
+                    '"It was the best of times, it was the worst of times." - A Tale of Two Cities, Charles Dickens',
+                    '"Whatever our souls are made of, his and mine are the same." - Wuthering Heights, Emily Bronte',
+                    '"I am no bird; and no net ensnares me." - Jane Eyre, Charlotte Bronte',
+                    '"Reader, I married him." - Jane Eyre, Charlotte Bronte',
+                    '"It is a truth universally acknowledged, that a single man in possession of a good fortune, must be in want of a wife." - Pride and Prejudice, Jane Austen',
+                    '"There is no charm equal to tenderness of heart." - Emma, Jane Austen',
+                    '"I declare after all there is no enjoyment like reading!" - Pride and Prejudice, Jane Austen',
+                    '"There is no place like home." - The Wonderful Wizard of Oz, L. Frank Baum',
+                    '"Please, sir, I want some more." - Oliver Twist, Charles Dickens',
+                    '"I wear the chain I forged in life." - A Christmas Carol, Charles Dickens',
+                    '"Bah! Humbug!" - A Christmas Carol, Charles Dickens',
+                    '"I am Dracula; and I bid you welcome." - Dracula, Bram Stoker',
+                    '"Call me Ishmael." - Moby-Dick, Herman Melville',
+                    '"I am not afraid of storms, for I am learning how to sail my ship." - Little Women, Louisa May Alcott',
+                    '"It is never too late to be wise." - Robinson Crusoe, Daniel Defoe',
+                    '"Beware; for I am fearless, and therefore powerful." - Frankenstein, Mary Shelley',
+                    '"The world is so full of a number of things, I\'m sure we should all be as happy as kings." - A Child\'s Garden of Verses, Robert Louis Stevenson',
+                    '"The moon was shining sulkily, because she thought the sun had got no business to be there after the day was done." - Alice\'s Adventures in Wonderland, Lewis Carroll',
+                    '"Who in the world am I? Ah, that\'s the great puzzle." - Alice\'s Adventures in Wonderland, Lewis Carroll',
+                    '"Curiouser and curiouser!" - Alice\'s Adventures in Wonderland, Lewis Carroll',
+                    '"We\'re all mad here." - Alice\'s Adventures in Wonderland, Lewis Carroll',
+                    '"The game is afoot." - The Adventure of the Abbey Grange, Arthur Conan Doyle',
+                    '"The world is full of obvious things which nobody by any chance ever observes." - The Hound of the Baskervilles, Arthur Conan Doyle',
+                    '"No one would have believed in the last years of the nineteenth century that this world was being watched keenly and closely by intelligences greater than man\'s." - The War of the Worlds, H.G. Wells',
+                    '"Fifteen men on the dead man\'s chest - Yo-ho-ho, and a bottle of rum!" - Treasure Island, Robert Louis Stevenson',
+                    '"The mind is its own place, and in itself can make a heaven of hell, a hell of heaven." - Paradise Lost, John Milton',
+                    '"All that glisters is not gold." - The Merchant of Venice, William Shakespeare',
+                    '"To thine own self be true." - Hamlet, William Shakespeare',
+                    '"Brevity is the soul of wit." - Hamlet, William Shakespeare',
+                    '"Nothing will come of nothing." - King Lear, William Shakespeare',
+                    '"The lady doth protest too much, methinks." - Hamlet, William Shakespeare',
+                    '"The fault, dear Brutus, is not in our stars, but in ourselves." - Julius Caesar, William Shakespeare',
+                    '"Cowards die many times before their deaths." - Julius Caesar, William Shakespeare',
+                    '"All the world\'s a stage, and all the men and women merely players." - As You Like It, William Shakespeare',
+                    '"Sweet are the uses of adversity." - As You Like It, William Shakespeare',
+                    '"Some are born great, some achieve greatness, and some have greatness thrust upon them." - Twelfth Night, William Shakespeare',
+                    '"We are such stuff as dreams are made on." - The Tempest, William Shakespeare',
+                    '"A horse! a horse! my kingdom for a horse!" - Richard III, William Shakespeare',
+                    '"There is nothing either good or bad, but thinking makes it so." - Hamlet, William Shakespeare',
+                    '"The strongest of all warriors are these two - Time and Patience." - War and Peace, Leo Tolstoy'
+                ];
+
+                return bookQuotes[index % bookQuotes.length];
+            }
+
+            function openModal(imageEl) {
+                var source = imageEl.getAttribute('src');
+                var prettyName = normalizeName(source);
+
+                modalImage.setAttribute('src', source);
+                modalTitle.textContent = prettyName;
+                modalDescription.textContent = imageEl.getAttribute('data-photo-description');
+                modal.classList.add('is-open');
+                modal.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('modal-open');
+            }
+
+            function closeModal() {
+                modal.classList.remove('is-open');
+                modal.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('modal-open');
+            }
+
+            var allPhotos = Array.prototype.slice.call(document.querySelectorAll('.one-photo'));
+            allPhotos.forEach(function (imageEl, index) {
+                var photoName = normalizeName(imageEl.getAttribute('src'));
+                imageEl.setAttribute('data-photo-name', photoName);
+                imageEl.setAttribute('data-photo-description', buildUniqueDescription(index, photoName));
+
+                imageEl.addEventListener('click', function () {
+                    openModal(imageEl);
+                });
+            });
+
+            modalClose.addEventListener('click', closeModal);
+            modal.addEventListener('click', function (event) {
+                if (event.target === modal) {
+                    closeModal();
+                }
+            });
+
+            document.addEventListener('keydown', function (event) {
+                if (event.key === 'Escape' && modal.classList.contains('is-open')) {
+                    closeModal();
+                }
+            });
+
+            next.addEventListener('click', function () {
+                setPage(current + 1);
+            });
+
+            prev.addEventListener('click', function () {
+                setPage(current - 1);
+            });
+
+            window.addEventListener('resize', updateViewportHeight);
+            updateViewportHeight();
+        })();
+    </script>
 </body>
 </html>
