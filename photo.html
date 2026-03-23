@@ -77,6 +77,10 @@
                     </div>
                 </div>
             </div>
+            <div class="album-nav-bottom" aria-label="Album pagination controls">
+                <button type="button" class="album-arrow bottom album-control-prev" aria-label="Previous album page">&#10094;</button>
+                <button type="button" class="album-arrow bottom album-control-next" aria-label="Next album page">&#10095;</button>
+            </div>
         </div>
         <footer>
             <div class="motivational-quote">
@@ -116,6 +120,8 @@
             var viewport = document.querySelector('.album-viewport');
             var prev = document.getElementById('album-prev');
             var next = document.getElementById('album-next');
+            var bottomPrev = Array.prototype.slice.call(document.querySelectorAll('.album-control-prev'));
+            var bottomNext = Array.prototype.slice.call(document.querySelectorAll('.album-control-next'));
             var firstPage = document.getElementById('photos-container');
             var secondPage = document.getElementById('photos-container-page-2');
             var thirdPage = document.getElementById('photos-container-page-3');
@@ -144,6 +150,10 @@
 
             function updateViewportHeight() {
                 viewport.style.height = pages[current].scrollHeight + 'px';
+            }
+
+            function updateViewportHeightDeferred() {
+                window.requestAnimationFrame(updateViewportHeight);
             }
 
             function setPage(index) {
@@ -255,6 +265,11 @@
                 imageEl.setAttribute('data-photo-name', photoName);
                 imageEl.setAttribute('data-photo-description', buildUniqueDescription(index, photoName));
 
+                if (!imageEl.complete) {
+                    imageEl.addEventListener('load', updateViewportHeightDeferred);
+                    imageEl.addEventListener('error', updateViewportHeightDeferred);
+                }
+
                 imageEl.addEventListener('click', function () {
                     swapToHighQuality(imageEl);
                     openModal(imageEl);
@@ -278,11 +293,24 @@
                 setPage(current + 1);
             });
 
+            bottomNext.forEach(function (buttonEl) {
+                buttonEl.addEventListener('click', function () {
+                    setPage(current + 1);
+                });
+            });
+
             prev.addEventListener('click', function () {
                 setPage(current - 1);
             });
 
+            bottomPrev.forEach(function (buttonEl) {
+                buttonEl.addEventListener('click', function () {
+                    setPage(current - 1);
+                });
+            });
+
             window.addEventListener('resize', updateViewportHeight);
+            window.addEventListener('load', updateViewportHeight);
             updateViewportHeight();
         })();
     </script>
