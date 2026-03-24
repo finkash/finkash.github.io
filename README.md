@@ -58,23 +58,23 @@ The design emphasizes **simplicity, readability, and aesthetic balance**, combin
 * Full-width image with overlay text
 * Subtle hover interaction and opacity effects
 
-### 5. Skills Visualization
+### 4. Skills Visualization
 
 * Interactive progress bars
 * Hover animations for engagement
 
-### 6. Photography Gallery
+### 5. Photography Gallery
 
 * Masonry-style layout using CSS columns
 * Hover zoom effects and focus transitions
 * Modal preview for images (lightbox-style experience)
 
-### 7. Contact Form
+### 6. Contact Form
 
 * Styled input fields and textarea
 * Clean UI for user interaction
 
-### 8. Footer
+### 7. Footer
 
 * Motivational quote
 * Social media links (LinkedIn, Instagram, X, 500px) 
