@@ -4,7 +4,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zorica Nikov</title>
 
-    <link href="./style/style.css" rel="stylesheet">
+    <link href="./style/style.css?v=20261024-17" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -33,23 +33,32 @@
                 <div id="banner-text">Contact</div>
             </div>
             <div class="flex">
-                <form action="">
+                <form action="https://formspree.io/f/xnppnejb" method="POST" id="contact-form">
+                    <input type="hidden" name="_subject" value="New portfolio contact message">
                     <div class="row">
                         <label for="first-name">First Name</label>
-                        <input type="text" id="first-name" name="firstname" placeholder="Your name..">
+                        <input type="text" id="first-name" name="first_name" placeholder="Your first name" autocomplete="given-name" required>
                     </div>
                     
                     <div class="row">
                         <label for="last-name">Last Name</label>
-                        <input type="text" id="last-name" name="lastname" placeholder="Your last name..">
+                        <input type="text" id="last-name" name="last_name" placeholder="Your last name" autocomplete="family-name" required>
+                    </div>
+
+                    <div class="row">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" placeholder="Your email address" autocomplete="email" required>
                     </div>
                     
                     <div class="row">
-                        <label for="message">Subject</label>
-                        <textarea id="message" name="message" placeholder="Let's chat."></textarea>
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" placeholder="Let's chat." required></textarea>
                     </div>
-                
-                    <input type="submit" value="Contact me.">
+
+                    <div class="contact-form-actions">
+                        <p class="contact-form-status" id="contact-form-status" role="status" aria-live="polite"></p>
+                        <button type="submit" id="contact-submit">Contact me</button>
+                    </div>
                 </form>
             </div>
         </div>
@@ -75,5 +84,40 @@
             </div>
         </footer>
     </div>
+    <script>
+        (function () {
+            var form = document.getElementById('contact-form');
+            var submitButton = document.getElementById('contact-submit');
+            var status = document.getElementById('contact-form-status');
+
+            form.addEventListener('submit', async function (event) {
+                event.preventDefault();
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+                status.className = 'contact-form-status';
+                status.textContent = '';
+
+                try {
+                    var response = await fetch(form.action, {
+                        method: 'POST',
+                        body: new FormData(form),
+                        headers: { Accept: 'application/json' }
+                    });
+
+                    if (!response.ok) throw new Error('Form submission failed');
+
+                    form.reset();
+                    status.classList.add('is-success');
+                    status.textContent = 'Thank you. Your message has been sent.';
+                } catch (error) {
+                    status.classList.add('is-error');
+                    status.textContent = 'Your message could not be sent. Please try again.';
+                } finally {
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Contact me';
+                }
+            });
+        })();
+    </script>
 </body>
 </html>

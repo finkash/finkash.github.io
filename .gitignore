@@ -1,0 +1,4 @@
+# Local high-resolution photography sources.
+# The site publishes optimized WebP copies from img_display instead.
+/img new/
+/img faves/
