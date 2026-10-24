@@ -572,25 +572,6 @@ body.modal-open {
     line-height: 1.6;
 }
 
-.photo-modal-close {
-    position: absolute;
-    top: 0.6rem;
-    right: 0.7rem;
-    width: 2rem;
-    height: 2rem;
-    border-radius: 999px;
-    border: 1px solid rgba(111, 78, 145, 0.45);
-    background-color: rgba(243, 228, 245, 0.9);
-    color: #5a4078;
-    font-size: 1.2rem;
-    cursor: pointer;
-}
-
-.photo-modal-close:hover {
-    background-color: rgba(200, 206, 238, 0.95);
-    color: #35375b;
-}
-
 .hor {
     height: 300px;
     width: 600px;
@@ -832,19 +813,6 @@ body.modal-open {
     max-height: 92vh;
     object-fit: contain;
     background: transparent;
-}
-
-.photography-page .photo-modal-close {
-    top: 0.65rem;
-    right: 0.65rem;
-    z-index: 2;
-    opacity: 0;
-    pointer-events: none;
-}
-
-.photography-page .photo-modal.is-image-ready .photo-modal-close {
-    opacity: 1;
-    pointer-events: auto;
 }
 
 .visually-hidden {
