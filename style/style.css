@@ -660,7 +660,11 @@ body.modal-open {
     transition: color 180ms ease, background-color 180ms ease;
 }
 
-.photo-category-button:hover,
+.photo-category-button:hover:not(.is-active) {
+    color: #4b3a5f;
+    background: #d7b9df;
+}
+
 .photo-category-button.is-active {
     color: #fff;
     background: #6a6ead;
@@ -727,6 +731,7 @@ body.modal-open {
     opacity: 0;
     color: transparent;
     background: #b9bee1;
+    transition: opacity 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 
 .photography-page .one-photo.is-loaded {
@@ -833,6 +838,13 @@ body.modal-open {
     top: 0.65rem;
     right: 0.65rem;
     z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.photography-page .photo-modal.is-image-ready .photo-modal-close {
+    opacity: 1;
+    pointer-events: auto;
 }
 
 .visually-hidden {

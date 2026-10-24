@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photography | Zorica Nikov</title>
-    <link href="./style/style.css?v=20261024-17" rel="stylesheet">
+    <link href="./style/style.css?v=20261024-19" rel="stylesheet">
 </head>
 <body class="photography-page">
     <div class="container photography-container">
@@ -74,7 +74,24 @@
         (function () {
             'use strict';
 
-            var categories = window.PHOTO_CATEGORIES || [];
+            var categoryOrder = [
+                'the-favorites',
+                'hungary-gp',
+                'events',
+                'nature-and-water',
+                'sky-and-from-above',
+                'street-and-architecture'
+            ];
+            var manifestCategories = window.PHOTO_CATEGORIES || [];
+            var categories = categoryOrder.map(function (categoryId) {
+                return manifestCategories.find(function (category) {
+                    return category.id === categoryId;
+                });
+            }).filter(Boolean);
+
+            manifestCategories.forEach(function (category) {
+                if (categoryOrder.indexOf(category.id) === -1) categories.push(category);
+            });
             var photosPerPage = Number.MAX_SAFE_INTEGER;
             var activeCategoryIndex = 0;
             var activePage = 0;
@@ -90,6 +107,8 @@
             var modalImage = document.getElementById('photo-modal-image');
             var modalClose = document.getElementById('photo-modal-close');
             var renderRequest = 0;
+            var modalRequest = 0;
+            var fullPhotoCache = {};
 
             function safeUrl(path) {
                 return encodeURI(path).replace(/#/g, '%23');
@@ -99,16 +118,62 @@
                 return Math.max(1, Math.ceil(category.photos.length / photosPerPage));
             }
 
+            function preloadFullPhoto(photo) {
+                var fullUrl = safeUrl(photo.original);
+
+                if (!fullPhotoCache[fullUrl]) {
+                    fullPhotoCache[fullUrl] = new Promise(function (resolve, reject) {
+                        var image = new Image();
+                        image.onload = function () {
+                            if (typeof image.decode === 'function') {
+                                image.decode().then(function () { resolve(fullUrl); }, function () { resolve(fullUrl); });
+                            } else {
+                                resolve(fullUrl);
+                            }
+                        };
+                        image.onerror = reject;
+                        image.src = fullUrl;
+                    });
+                }
+
+                return fullPhotoCache[fullUrl];
+            }
+
             function openModal(photo) {
-                modalImage.src = safeUrl(photo.original);
-                modalImage.alt = photo.alt;
-                modal.classList.add('is-open');
-                modal.setAttribute('aria-hidden', 'false');
-                document.body.classList.add('modal-open');
-                modalClose.focus();
+                var requestId = ++modalRequest;
+
+                function revealModal() {
+                    if (requestId !== modalRequest) return;
+                    modal.classList.add('is-image-ready');
+                    modal.classList.add('is-open');
+                    modal.setAttribute('aria-hidden', 'false');
+                    document.body.classList.add('modal-open');
+                    modalClose.focus();
+                }
+
+                preloadFullPhoto(photo).catch(function () {
+                    return safeUrl(photo.large);
+                }).then(function (imageUrl) {
+                    if (requestId !== modalRequest) return;
+                    modalImage.width = photo.width;
+                    modalImage.height = photo.height;
+                    modalImage.src = imageUrl;
+                    modalImage.alt = photo.alt;
+
+                    if (typeof modalImage.decode === 'function') {
+                        modalImage.decode().then(revealModal, revealModal);
+                    } else if (modalImage.complete && modalImage.naturalWidth) {
+                        revealModal();
+                    } else {
+                        modalImage.addEventListener('load', revealModal, { once: true });
+                        modalImage.addEventListener('error', revealModal, { once: true });
+                    }
+                });
             }
 
             function closeModal() {
+                modalRequest += 1;
+                modal.classList.remove('is-image-ready');
                 modal.classList.remove('is-open');
                 modal.setAttribute('aria-hidden', 'true');
                 document.body.classList.remove('modal-open');
@@ -132,21 +197,16 @@
                 image.addEventListener('load', function () {
                     image.classList.add('is-loaded');
                 });
+                image.addEventListener('pointerenter', function () {
+                    preloadFullPhoto(photo).catch(function () {});
+                }, { once: true });
+                image.addEventListener('pointerdown', function () {
+                    preloadFullPhoto(photo).catch(function () {});
+                }, { once: true });
                 image.addEventListener('click', function () { openModal(photo); });
                 if (image.complete && image.naturalWidth) image.classList.add('is-loaded');
                 tile.appendChild(image);
                 return tile;
-            }
-
-            function preloadPhotos(photos) {
-                return Promise.all(photos.map(function (photo) {
-                    return new Promise(function (resolve) {
-                        var preloader = new Image();
-                        preloader.onload = resolve;
-                        preloader.onerror = resolve;
-                        preloader.src = safeUrl(photo.small);
-                    });
-                }));
             }
 
             function updateCategoryButtons() {
@@ -157,7 +217,7 @@
                 });
             }
 
-            async function renderGallery(shouldScroll, renderImmediately) {
+            function renderGallery(shouldScroll) {
                 var requestId = ++renderRequest;
                 var category = categories[activeCategoryIndex];
                 var totalPages = pageCount(category);
@@ -170,7 +230,6 @@
                 nextButton.disabled = true;
                 updateCategoryButtons();
 
-                if (!renderImmediately) await preloadPhotos(visiblePhotos);
                 if (requestId !== renderRequest) return;
 
                 visiblePhotos.forEach(function (photo, index) {
@@ -234,7 +293,7 @@
             });
 
             if (categories.length) {
-                renderGallery(false, true);
+                renderGallery(false);
             } else {
                 gallerySection.setAttribute('aria-busy', 'false');
                 gallery.textContent = 'No photographs are available.';
