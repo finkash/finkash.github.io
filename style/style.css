@@ -19,7 +19,6 @@ header {
     align-items: center;
     padding: 0.8em 1em 0.6em 1em;
     box-shadow: 0 2px 0px 0px #D8BEE5;
-    z-index: 1000;
 }
 
 header .logo {
@@ -69,7 +68,6 @@ header li a {
 .content-index {
     margin-top: 10px;
     background-color:#c8ceee;
-    height: auto;
 }
 
 #introduction {
@@ -77,7 +75,6 @@ header li a {
     justify-content: center;
     align-items: center;
     min-height: 350px;
-    height: auto;
 }
 
 .flex {
@@ -93,8 +90,6 @@ header li a {
     line-height: 1.55;
     letter-spacing: 0.01em;
     color: #3f3662;
-    justify-content: center;
-    align-items: center;
     padding: 1.5rem 0;
     width: 46rem;
     margin: auto;
@@ -163,11 +158,6 @@ header li a {
 #main-img-skills {
     background-image: url("./../img/coding.jpg");
     background-position: 0 -100px;
-}
-
-#main-img-photo {
-    background-image: url("./../img_lq/chess.jpg");
-    background-position: 0 -200px;
 }
 
 #main-img-contact {
@@ -244,8 +234,7 @@ footer li a {
 
 .skill-container {
     width: 50%;
-    padding: 1em 1em;
-    padding-bottom: 3em;
+    padding: 1em 1em 3em;
 }
 
 .skill-container > .title {
@@ -321,27 +310,13 @@ form label {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-input[type=text], input[type=email], select, textarea {
+input[type=text], input[type=email], textarea {
     box-sizing: border-box;
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 0.4em;
     margin-top: 1em;
-}
-
-input[type=submit] {
-    background-color: #6a6ead;
-    color: white;
-    padding: 1em 1.2em;
-    border: none;
-    border-radius: 0.4em;
-    cursor: pointer;
-    float: right;
-}
-
-input[type=submit]:hover {
-    background-color: #202462;
 }
 
 .contact-form-actions {
@@ -385,137 +360,6 @@ input[type=submit]:hover {
     color: #7a2531;
 }
 
-.album-slider {
-    position: relative;
-}
-
-.album-viewport {
-    overflow: hidden;
-    transition: height 350ms ease;
-}
-
-.album-track {
-    display: flex;
-    width: 300%;
-    transition: transform 450ms ease-in-out;
-}
-
-.album-page {
-    width: 33.333333%;
-}
-
-.photos-masonry,
-#photos-container {
-    padding: 1em 1em;
-    column-count: 3;
-    column-gap: 0;
-}
-
-.album-arrow {
-    position: absolute;
-    top: auto;
-    bottom: 0.8em;
-    transform: none;
-    z-index: 1100;
-    border: 1px solid rgba(111, 78, 145, 0.45);
-    width: 2.4em;
-    height: 2.4em;
-    border-radius: 999px;
-    background-color: rgba(243, 228, 245, 0.55);
-    color: #5a4078;
-    font-size: 1.6em;
-    line-height: 1;
-    cursor: pointer;
-    backdrop-filter: blur(2px);
-    transition: background-color 200ms ease-in-out, color 200ms ease-in-out, border-color 200ms ease-in-out;
-}
-
-.album-arrow:hover {
-    background-color: rgba(200, 206, 238, 0.9);
-    color: #35375b;
-    border-color: rgba(53, 55, 91, 0.55);
-}
-
-.album-arrow.left {
-    left: 0.6em;
-}
-
-.album-arrow.right {
-    right: 0.6em;
-}
-
-.album-nav-bottom {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0.9em 0.8em 1.2em;
-}
-
-.album-nav-bottom .album-arrow.bottom {
-    position: static;
-    bottom: auto;
-    left: auto;
-    right: auto;
-}
-
-.photo-row {
-    display: flex;
-    width: 100%;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0.8em;
-}
-
-.photo-2col {
-    width: min-content;
-    display: inline-block;
-}
-
-.photo-1col {
-    display: inline-block;
-}
-
-.one-photo {
-    background-size: cover;
-    width: 100%;
-    height: auto;
-    position: relative;
-    display: block;
-    object-fit: cover;
-    transition: transform 300ms ease-in-out, box-shadow 300ms ease-in-out, opacity 220ms ease-in-out, filter 220ms ease-in-out;
-    cursor: pointer;
-}
-
-.photos-masonry:hover .one-photo {
-    opacity: 0.22;
-    filter: saturate(0.7) brightness(0.78);
-}
-
-.photos-masonry:hover .one-photo:hover {
-    opacity: 1;
-    filter: none;
-}
-
-.photo-tile {
-    overflow: visible;
-    break-inside: avoid;
-    margin: 0;
-}
-
-.photo-tile.landscape {
-    aspect-ratio: auto;
-}
-
-.photo-tile.portrait {
-    aspect-ratio: auto;
-}
-
-.one-photo:hover {
-    transform: scale(1.12);
-    z-index: 20;
-    box-shadow: 0 0.8em 2em rgba(0, 0, 0, 0.28);
-}
-
 body.modal-open {
     overflow: hidden;
 }
@@ -535,63 +379,6 @@ body.modal-open {
 .photo-modal.is-open {
     display: flex;
 }
-
-.photo-card {
-    position: relative;
-    width: min(52rem, 92vw);
-    max-height: 88vh;
-    overflow: auto;
-    border-radius: 1rem;
-    background: linear-gradient(160deg, #f3e4f5 0%, #d9ddf3 100%);
-    border: 1px solid rgba(111, 78, 145, 0.36);
-    box-shadow: 0 1.6rem 3rem rgba(41, 30, 61, 0.35);
-}
-
-.photo-card img {
-    width: 100%;
-    max-height: 65vh;
-    object-fit: contain;
-    background-color: rgba(255, 255, 255, 0.6);
-}
-
-.photo-card-content {
-    padding: 1.1rem 1.3rem 1.3rem;
-}
-
-.photo-card-content h3 {
-    margin: 0 0 0.5rem;
-    font-family: 'Playfair Display', Georgia, serif;
-    color: #4b3a5f;
-    font-size: 1.45rem;
-}
-
-.photo-card-content p {
-    margin: 0;
-    font-family: 'Manrope', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    color: #35375b;
-    line-height: 1.6;
-}
-
-.hor {
-    height: 300px;
-    width: 600px;
-    display: inline-block;
-}
-
-.ver {
-    height: 600px;
-    width: 400px;
-}
-
-#h01 { background-image: url('./../img_lq/DSC_0074.jpg'); }
-#h02 { background-image: url('./../img_lq/DSC_0078.jpg'); }
-#v01 { background-image: url('./../img_lq/DSC_0116.jpg'); }
-#h03 { background-image: url('./../img_lq/DSC_0427.jpg'); }
-#h04 { background-image: url('./../img_lq/DSC_0469.jpg'); }
-#v02 { background-image: url('./../img_lq/DSC_0285.jpg'); }
-#h05 { background-image: url('./../img_lq/DSC_0560.jpg'); }
-#h06 { background-image: url('./../img_lq/DSC_0658.jpg'); }
-#v03 { background-image: url('./../img_lq/DSC_0359-2.jpg'); }
 
 /** RESPONSIVE PHOTOGRAPHY PORTFOLIO **/
 
@@ -655,18 +442,6 @@ body.modal-open {
     margin-top: 0;
 }
 
-.photography-page .photo-banner {
-    height: clamp(15rem, 32vw, 30rem);
-}
-
-.photography-page #main-img-photo {
-    background-position: center 45%;
-}
-
-.photo-gallery-section {
-    scroll-margin-top: 4.5rem;
-}
-
 .photo-disclaimer {
     box-sizing: border-box;
     width: 100%;
@@ -693,8 +468,7 @@ body.modal-open {
     color: #f3e4f5;
 }
 
-.photography-page .portfolio-grid,
-.photography-page #photos-container {
+.photography-page .portfolio-grid {
     box-sizing: border-box;
     column-count: 8;
     column-gap: 4px;
@@ -704,14 +478,19 @@ body.modal-open {
 .photography-page .photo-tile {
     margin: 0 0 4px;
     overflow: visible;
+    break-inside: avoid;
 }
 
 .photography-page .one-photo {
+    position: relative;
+    display: block;
     width: 100%;
     height: auto;
+    object-fit: cover;
     opacity: 0;
     color: transparent;
     background: #b9bee1;
+    cursor: pointer;
     transition: opacity 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 
@@ -719,54 +498,10 @@ body.modal-open {
     opacity: 1;
 }
 
-.photography-page .photos-masonry:hover .one-photo.is-loaded,
-.photography-page .photos-masonry:hover .one-photo.is-loaded:hover {
-    opacity: 1;
-    filter: none;
-}
-
-.photo-pagination {
-    display: grid;
-    grid-template-columns: 3rem minmax(7rem, auto) 3rem;
-    justify-content: center;
-    align-items: center;
-    gap: 0.8rem;
-    padding: 1rem 1rem 1.35rem;
-}
-
-.photo-pagination[hidden] {
-    display: none;
-}
-
-.photo-page-arrow {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.75rem;
-    height: 2.75rem;
-    padding: 0;
-    border: 1px solid rgba(111, 78, 145, 0.45);
-    border-radius: 999px;
-    background: rgba(243, 228, 245, 0.8);
-    color: #5a4078;
-    font-size: 1.25rem;
-    cursor: pointer;
-    transition: background-color 180ms ease, opacity 180ms ease;
-}
-
-.photo-page-arrow:hover:not(:disabled) {
-    background: #f3e4f5;
-}
-
-.photo-page-arrow:disabled {
-    cursor: default;
-    opacity: 0.28;
-}
-
-.photo-page-status {
-    color: #4b3a5f;
-    font-family: 'Manrope', 'Segoe UI', sans-serif;
-    text-align: center;
+.photography-page .one-photo:hover {
+    z-index: 20;
+    transform: scale(1.12);
+    box-shadow: 0 0.8em 2em rgba(0, 0, 0, 0.28);
 }
 
 .photo-collection-description {
@@ -803,6 +538,8 @@ body.modal-open {
     overflow: visible;
     border-radius: 0.35rem;
     background: rgba(20, 18, 25, 0.96);
+    border: 1px solid rgba(111, 78, 145, 0.36);
+    box-shadow: 0 1.6rem 3rem rgba(41, 30, 61, 0.35);
 }
 
 .photography-page .photo-card img {
@@ -828,15 +565,13 @@ body.modal-open {
 }
 
 @media (max-width: 1200px) {
-    .photography-page .portfolio-grid,
-    .photography-page #photos-container {
+    .photography-page .portfolio-grid {
         column-count: 7;
     }
 }
 
 @media (max-width: 900px) {
-    .photography-page .portfolio-grid,
-    .photography-page #photos-container {
+    .photography-page .portfolio-grid {
         column-count: 6;
     }
 
@@ -850,56 +585,12 @@ body.modal-open {
 }
 
 @media (max-width: 650px) {
-    .photography-page header {
-        align-items: center;
-        padding-inline: 0.5rem;
-    }
-
-    .photography-page header .logo {
-        font-size: 2.2em;
-    }
-
-    .photography-page header #menu {
-        overflow-x: auto;
-    }
-
-    .photography-page header ul {
-        padding-left: 0;
-    }
-
-    .photography-page header li {
-        padding: 0.55em 0.45em;
-    }
-
-    .photography-page header li a {
-        font-size: 1em;
-    }
-
     .photo-category-list {
         justify-content: flex-start;
     }
 
-    .photography-page .portfolio-grid,
-    .photography-page #photos-container {
+    .photography-page .portfolio-grid {
         column-count: 5;
-    }
-
-    .photography-page #banner-text {
-        font-size: clamp(3rem, 15vw, 5rem);
-    }
-
-    .photography-page footer {
-        flex-direction: column;
-        gap: 0.5rem;
-        text-align: center;
-    }
-
-    .photography-page footer .social-icons {
-        margin-left: 0;
-    }
-
-    .photography-page footer ul {
-        padding-left: 0;
     }
 
     .photo-modal {
@@ -908,8 +599,7 @@ body.modal-open {
 }
 
 @media (max-width: 480px) {
-    .photography-page .portfolio-grid,
-    .photography-page #photos-container {
+    .photography-page .portfolio-grid {
         column-count: 3;
     }
 }

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Photography | Zorica Nikov</title>
-    <link href="./style/style.css?v=20261024-20" rel="stylesheet">
+    <link href="./style/style.css?v=20261024-21" rel="stylesheet">
 </head>
 <body class="photography-page">
     <div class="container photography-container">
@@ -32,14 +32,8 @@
 
         <main class="content photo-content">
             <section class="photo-gallery-section" aria-live="polite" aria-busy="true">
-                <h2 class="visually-hidden" id="gallery-heading">Events</h2>
-                <div class="photos-masonry portfolio-grid" id="photos-container"></div>
-
-                <div class="photo-pagination" aria-label="Gallery pages">
-                    <button type="button" class="photo-page-arrow" id="photo-prev" aria-label="Previous page">&#10094;</button>
-                    <span class="photo-page-status" id="photo-page-status"></span>
-                    <button type="button" class="photo-page-arrow" id="photo-next" aria-label="Next page">&#10095;</button>
-                </div>
+                <h2 class="visually-hidden" id="gallery-heading">The Favorites</h2>
+                <div class="portfolio-grid" id="photos-container"></div>
             </section>
 
             <aside class="photo-collection-description">
@@ -73,7 +67,7 @@
         (function () {
             'use strict';
 
-            var categoryOrder = [
+            const categoryOrder = [
                 'the-favorites',
                 'hungary-gp',
                 'events',
@@ -81,8 +75,8 @@
                 'sky-and-from-above',
                 'street-and-architecture'
             ];
-            var manifestCategories = window.PHOTO_CATEGORIES || [];
-            var categories = categoryOrder.map(function (categoryId) {
+            const manifestCategories = window.PHOTO_CATEGORIES || [];
+            const categories = categoryOrder.map(function (categoryId) {
                 return manifestCategories.find(function (category) {
                     return category.id === categoryId;
                 });
@@ -91,37 +85,26 @@
             manifestCategories.forEach(function (category) {
                 if (categoryOrder.indexOf(category.id) === -1) categories.push(category);
             });
-            var photosPerPage = Number.MAX_SAFE_INTEGER;
-            var activeCategoryIndex = 0;
-            var activePage = 0;
-            var categoryList = document.getElementById('photo-category-list');
-            var gallery = document.getElementById('photos-container');
-            var gallerySection = document.querySelector('.photo-gallery-section');
-            var galleryHeading = document.getElementById('gallery-heading');
-            var previousButton = document.getElementById('photo-prev');
-            var nextButton = document.getElementById('photo-next');
-            var pageStatus = document.getElementById('photo-page-status');
-            var pagination = document.querySelector('.photo-pagination');
-            var modal = document.getElementById('photo-modal');
-            var modalImage = document.getElementById('photo-modal-image');
-            var renderRequest = 0;
-            var modalRequest = 0;
-            var fullPhotoCache = {};
+            let activeCategoryIndex = 0;
+            let modalRequest = 0;
+            const categoryList = document.getElementById('photo-category-list');
+            const gallery = document.getElementById('photos-container');
+            const gallerySection = document.querySelector('.photo-gallery-section');
+            const galleryHeading = document.getElementById('gallery-heading');
+            const modal = document.getElementById('photo-modal');
+            const modalImage = document.getElementById('photo-modal-image');
+            const fullPhotoCache = new Map();
 
             function safeUrl(path) {
                 return encodeURI(path).replace(/#/g, '%23');
             }
 
-            function pageCount(category) {
-                return Math.max(1, Math.ceil(category.photos.length / photosPerPage));
-            }
-
             function preloadFullPhoto(photo) {
-                var fullUrl = safeUrl(photo.original);
+                const fullUrl = safeUrl(photo.original);
 
-                if (!fullPhotoCache[fullUrl]) {
-                    fullPhotoCache[fullUrl] = new Promise(function (resolve, reject) {
-                        var image = new Image();
+                if (!fullPhotoCache.has(fullUrl)) {
+                    const loadPromise = new Promise(function (resolve, reject) {
+                        const image = new Image();
                         image.onload = function () {
                             if (typeof image.decode === 'function') {
                                 image.decode().then(function () { resolve(fullUrl); }, function () { resolve(fullUrl); });
@@ -132,13 +115,19 @@
                         image.onerror = reject;
                         image.src = fullUrl;
                     });
+                    loadPromise.catch(function () { fullPhotoCache.delete(fullUrl); });
+                    fullPhotoCache.set(fullUrl, loadPromise);
                 }
 
-                return fullPhotoCache[fullUrl];
+                return fullPhotoCache.get(fullUrl);
+            }
+
+            function warmFullPhoto(photo) {
+                preloadFullPhoto(photo).catch(function () {});
             }
 
             function openModal(photo) {
-                var requestId = ++modalRequest;
+                const requestId = ++modalRequest;
 
                 function revealModal() {
                     if (requestId !== modalRequest) return;
@@ -176,8 +165,8 @@
             }
 
             function createPhoto(photo, index) {
-                var tile = document.createElement('div');
-                var image = document.createElement('img');
+                const tile = document.createElement('div');
+                const image = document.createElement('img');
                 tile.className = 'photo-tile';
                 image.className = 'one-photo';
                 image.width = photo.width;
@@ -192,12 +181,8 @@
                 image.addEventListener('load', function () {
                     image.classList.add('is-loaded');
                 });
-                image.addEventListener('pointerenter', function () {
-                    preloadFullPhoto(photo).catch(function () {});
-                }, { once: true });
-                image.addEventListener('pointerdown', function () {
-                    preloadFullPhoto(photo).catch(function () {});
-                }, { once: true });
+                image.addEventListener('pointerenter', function () { warmFullPhoto(photo); }, { once: true });
+                image.addEventListener('pointerdown', function () { warmFullPhoto(photo); }, { once: true });
                 image.addEventListener('click', function () { openModal(photo); });
                 if (image.complete && image.naturalWidth) image.classList.add('is-loaded');
                 tile.appendChild(image);
@@ -205,78 +190,47 @@
             }
 
             function updateCategoryButtons() {
-                Array.prototype.forEach.call(categoryList.querySelectorAll('button'), function (button, index) {
-                    var selected = index === activeCategoryIndex;
+                categoryList.querySelectorAll('button').forEach(function (button, index) {
+                    const selected = index === activeCategoryIndex;
                     button.classList.toggle('is-active', selected);
                     button.setAttribute('aria-pressed', selected ? 'true' : 'false');
                 });
             }
 
-            function renderGallery(shouldScroll) {
-                var requestId = ++renderRequest;
-                var category = categories[activeCategoryIndex];
-                var totalPages = pageCount(category);
-                var start = activePage * photosPerPage;
-                var visiblePhotos = category.photos.slice(start, start + photosPerPage);
-                var fragment = document.createDocumentFragment();
+            function renderGallery() {
+                const category = categories[activeCategoryIndex];
+                const fragment = document.createDocumentFragment();
 
                 gallerySection.setAttribute('aria-busy', 'true');
-                previousButton.disabled = true;
-                nextButton.disabled = true;
                 updateCategoryButtons();
 
-                if (requestId !== renderRequest) return;
-
-                visiblePhotos.forEach(function (photo, index) {
+                category.photos.forEach(function (photo, index) {
                     fragment.appendChild(createPhoto(photo, index));
                 });
                 gallery.replaceChildren(fragment);
 
                 window.requestAnimationFrame(function () {
-                    Array.prototype.forEach.call(gallery.querySelectorAll('[data-responsive-srcset]'), function (image) {
+                    gallery.querySelectorAll('[data-responsive-srcset]').forEach(function (image) {
                         image.srcset = image.getAttribute('data-responsive-srcset');
                         image.removeAttribute('data-responsive-srcset');
                     });
                 });
 
                 galleryHeading.textContent = category.label;
-                pageStatus.textContent = 'Page ' + (activePage + 1) + ' of ' + totalPages;
-                previousButton.disabled = activePage === 0;
-                nextButton.disabled = activePage >= totalPages - 1;
-                pagination.hidden = totalPages <= 1;
                 gallerySection.setAttribute('aria-busy', 'false');
-
-                if (shouldScroll) {
-                    gallerySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
             }
 
             categories.forEach(function (category, index) {
-                var button = document.createElement('button');
+                const button = document.createElement('button');
                 button.type = 'button';
                 button.className = 'photo-category-button';
                 button.textContent = category.label;
                 button.setAttribute('aria-pressed', 'false');
                 button.addEventListener('click', function () {
                     activeCategoryIndex = index;
-                    activePage = 0;
-                    renderGallery(false);
+                    renderGallery();
                 });
                 categoryList.appendChild(button);
-            });
-
-            previousButton.addEventListener('click', function () {
-                if (activePage > 0) {
-                    activePage -= 1;
-                    renderGallery(false);
-                }
-            });
-
-            nextButton.addEventListener('click', function () {
-                if (activePage < pageCount(categories[activeCategoryIndex]) - 1) {
-                    activePage += 1;
-                    renderGallery(false);
-                }
             });
 
             modal.addEventListener('click', function (event) {
@@ -287,12 +241,10 @@
             });
 
             if (categories.length) {
-                renderGallery(false);
+                renderGallery();
             } else {
                 gallerySection.setAttribute('aria-busy', 'false');
                 gallery.textContent = 'No photographs are available.';
-                previousButton.disabled = true;
-                nextButton.disabled = true;
             }
         })();
     </script>

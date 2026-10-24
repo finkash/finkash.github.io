@@ -1,10 +1,11 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Zorica Nikov</title>
 
-    <link href="./style/style.css?v=20261024-20" rel="stylesheet">
+    <link href="./style/style.css?v=20261024-21" rel="stylesheet">
 </head>
 <body>
     <div class="container">
@@ -22,7 +23,7 @@
                         <a href="photo.html">Photography</a>
                     </li>
                     <li>
-                        <a href="contact.html">Contact</a>
+                        <a href="contact.html" aria-current="page">Contact</a>
                     </li>
                 </ul>
             </div>
@@ -86,19 +87,21 @@
     </div>
     <script>
         (function () {
-            var form = document.getElementById('contact-form');
-            var submitButton = document.getElementById('contact-submit');
-            var status = document.getElementById('contact-form-status');
+            'use strict';
+
+            const form = document.getElementById('contact-form');
+            const submitButton = document.getElementById('contact-submit');
+            const statusMessage = document.getElementById('contact-form-status');
 
             form.addEventListener('submit', async function (event) {
                 event.preventDefault();
                 submitButton.disabled = true;
                 submitButton.textContent = 'Sending...';
-                status.className = 'contact-form-status';
-                status.textContent = '';
+                statusMessage.className = 'contact-form-status';
+                statusMessage.textContent = '';
 
                 try {
-                    var response = await fetch(form.action, {
+                    const response = await fetch(form.action, {
                         method: 'POST',
                         body: new FormData(form),
                         headers: { Accept: 'application/json' }
@@ -107,11 +110,11 @@
                     if (!response.ok) throw new Error('Form submission failed');
 
                     form.reset();
-                    status.classList.add('is-success');
-                    status.textContent = 'Thank you. Your message has been sent.';
-                } catch (error) {
-                    status.classList.add('is-error');
-                    status.textContent = 'Your message could not be sent. Please try again.';
+                    statusMessage.classList.add('is-success');
+                    statusMessage.textContent = 'Thank you. Your message has been sent.';
+                } catch {
+                    statusMessage.classList.add('is-error');
+                    statusMessage.textContent = 'Your message could not be sent. Please try again.';
                 } finally {
                     submitButton.disabled = false;
                     submitButton.textContent = 'Contact me';

@@ -33,12 +33,12 @@ function Get-OrientedImageDimensions {
 }
 
 $categories = @(
-    [PSCustomObject]@{ RelativeFolder = 'img new/events'; Label = 'Events'; Slug = 'events' }
+    [PSCustomObject]@{ RelativeFolder = 'img faves'; Label = 'The Favorites'; Slug = 'the-favorites' }
     [PSCustomObject]@{ RelativeFolder = 'img new/hungary gp'; Label = 'Hungary GP'; Slug = 'hungary-gp' }
+    [PSCustomObject]@{ RelativeFolder = 'img new/events'; Label = 'Events'; Slug = 'events' }
     [PSCustomObject]@{ RelativeFolder = 'img new/nature and water'; Label = 'Nature and Water'; Slug = 'nature-and-water' }
     [PSCustomObject]@{ RelativeFolder = 'img new/sky and from above'; Label = 'Sky and From Above'; Slug = 'sky-and-from-above' }
     [PSCustomObject]@{ RelativeFolder = 'img new/street and architecture'; Label = 'Street and Architecture'; Slug = 'street-and-architecture' }
-    [PSCustomObject]@{ RelativeFolder = 'img faves'; Label = 'The Favorites'; Slug = 'the-favorites' }
 )
 
 if (-not (Get-Command magick -ErrorAction SilentlyContinue)) {
